@@ -174,6 +174,7 @@ class ContactForm {
     }
 
     handleSubmit(e) {
+        if(!this.form) return;
         e.preventDefault();
         
         const formData = new FormData(this.form);
@@ -182,7 +183,6 @@ class ContactForm {
             email: formData.get('email'),
             message: formData.get('message')
         };
-        // emailjs.sendForm("service_l4feu8g", "template_bcbbuy5", formData)
 
         // Simulate form submission
         this.showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
