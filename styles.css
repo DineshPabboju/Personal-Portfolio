@@ -581,51 +581,72 @@ section {
     color: var(--primary-dark);
 }
 
-/* GitHub Section */
-.github {
+/* Coding Profiles Section */
+.profiles {
     background: var(--bg-secondary);
 }
 
-.github-content {
+.profiles-content {
     text-align: center;
 }
 
-.github-stats {
+.profiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-xl);
 }
 
-.stat-card {
+.profile-card {
     background: var(--bg-card);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-2xl);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
     transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px var(--shadow);
+.profile-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
-.stat-card h3 {
-    font-size: var(--font-size-3xl);
-    font-weight: 700;
-    color: var(--primary);
+.profile-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.profile-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
 }
 
-.stat-card p {
+.profile-card p {
     color: var(--text-secondary);
-    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
 }
 
-.github-cta p {
-    font-size: var(--font-size-lg);
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
     margin-bottom: var(--spacing-lg);
-    color: var(--text-secondary);
+}
+
+.profile-stats span {
+    color: var(--primary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    background: rgba(var(--primary-rgb), 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
 }
 
 /* Contact Section */
@@ -823,7 +844,7 @@ section {
         grid-template-columns: 1fr;
     }
     
-    .github-stats {
+    .profiles-grid {
         grid-template-columns: 1fr;
     }
 }
