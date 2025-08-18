@@ -1043,4 +1043,8 @@ section {
     .profiles-grid {
         grid-template-columns: 1fr;
     }
+    
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
 }
