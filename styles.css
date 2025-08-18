@@ -469,7 +469,7 @@ section {
 
 .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-3xl);
     align-items: start;
 }
@@ -507,66 +507,6 @@ section {
     transform: translateY(-3px);
     border-color: var(--primary);
     box-shadow: 0 5px 15px var(--shadow);
-}
-
-/* Education Section */
-.education h3 {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-lg);
-    color: var(--text-primary);
-}
-
-.education-card {
-    background: var(--bg-card);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    transition: all var(--transition-fast);
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    box-shadow: 0 2px 10px var(--shadow);
-}
-
-.education-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--primary);
-    box-shadow: 0 8px 25px var(--shadow);
-}
-
-.education-icon {
-    font-size: 2.5rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    flex-shrink: 0;
-}
-
-.education-details h4 {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
-}
-
-.education-field {
-    font-size: var(--font-size-base);
-    color: var(--primary);
-    font-weight: 500;
-    margin-bottom: var(--spacing-xs);
-}
-
-.education-institution {
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-xs);
-}
-
-.education-duration {
-    font-size: var(--font-size-sm);
-    color: var(--text-muted);
-    font-weight: 500;
 }
 
 /* Projects Section */
