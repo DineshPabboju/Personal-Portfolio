@@ -76,7 +76,7 @@ class Navigation {
                 const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                    const offsetTop = targetSection.offsetTop - 100; // Account for fixed navbar
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -88,7 +88,7 @@ class Navigation {
 
     highlightActiveSection() {
         const sections = document.querySelectorAll('section');
-        const scrollPos = window.scrollY + 150;
+        const scrollPos = window.scrollY + 200;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
