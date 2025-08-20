@@ -678,89 +678,98 @@ section {
     margin: 0 auto;
 }
 
-.certifications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
+.certifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
 }
 
-.certification-card {
+.certification-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
     border: 1px solid var(--border);
-    box-shadow: 0 4px 15px var(--shadow);
-    transition: all var(--transition-normal);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
 }
 
-.certification-card::before {
+.certification-item::before {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    transform: scaleX(0);
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    transform: scaleY(0);
     transition: transform var(--transition-fast);
 }
 
-.certification-card:hover::before {
-    transform: scaleX(1);
+.certification-item:hover::before {
+    transform: scaleY(1);
 }
 
-.certification-card:hover {
-    transform: translateY(-8px);
+.certification-item:hover {
+    transform: translateX(8px);
     border-color: var(--primary);
-    box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.15);
+    box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.15);
 }
 
 .certification-icon {
+    font-size: var(--font-size-2xl);
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 70px;
     background: rgba(var(--primary-rgb), 0.1);
     border-radius: 50%;
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
+    flex-shrink: 0;
     transition: all var(--transition-fast);
 }
 
-.certification-card:hover .certification-icon {
+.certification-item:hover .certification-icon {
     background: rgba(var(--primary-rgb), 0.2);
     transform: scale(1.1);
 }
 
-.certification-title {
-    font-size: var(--font-size-xl);
-    font-weight: 700;
-    color: var(--text-primary);
+.certification-info {
+    flex: 1;
+}
+
+.certification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--spacing-xs);
 }
 
-.certification-issuer {
+.certification-title {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--primary);
-    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+    margin: 0;
 }
 
 .certification-date {
     font-size: var(--font-size-sm);
     color: var(--text-muted);
-    margin-bottom: var(--spacing-md);
+    background: var(--bg-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
     font-weight: 500;
 }
 
-.certification-description {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+.certification-issuer {
     font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
 }
 
 .certification-skills {
@@ -769,10 +778,10 @@ section {
     gap: var(--spacing-xs);
 }
 
-.skill-badge {
+.certification-skills .skill-badge {
     background: var(--bg-secondary);
     color: var(--text-secondary);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 2px var(--spacing-xs);
     border-radius: var(--radius-sm);
     font-size: var(--font-size-xs);
     font-weight: 500;
@@ -780,10 +789,29 @@ section {
     transition: all var(--transition-fast);
 }
 
-.skill-badge:hover {
-    border-color: var(--primary);
-    color: var(--primary);
+.certification-item:hover .skill-badge {
+    border-color: rgba(var(--primary-rgb), 0.3);
     background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+}
+
+/* Responsive Design for Certifications */
+@media (max-width: 768px) {
+    .certification-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+    
+    .certification-header {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    .certification-skills {
+        justify-content: center;
+    }
 }
 
 /* Education Section */
