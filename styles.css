@@ -595,78 +595,154 @@ section {
 /* Coding Profiles Section */
 .profiles {
     background: var(--bg-secondary);
-    padding: var(--spacing-4xl) 0;
-    padding: 30px 0;
+    padding: var(--spacing-3xl) 0;
 }
 
 .profiles-content {
-    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-3xl);
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.profile-card {
-    background: var(--bg-card);
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    transition: all var(--transition-fast);
+.profiles-list {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.profile-item {
+    display: flex;
     align-items: center;
-    text-align: center;
+    gap: var(--spacing-lg);
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
 }
 
-.profile-card::before {
+.profile-item::before {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--primary-light));
-    transform: scaleX(0);
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    transform: scaleY(0);
     transition: transform var(--transition-fast);
 }
 
-.profile-card:hover::before {
-    transform: scaleX(1);
+.profile-item:hover::before {
+    transform: scaleY(1);
 }
 
-.profile-card:hover {
-    transform: translateY(-8px);
+.profile-item:hover {
+    transform: translateX(8px);
     border-color: var(--primary);
     box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.15);
 }
 
 .profile-icon {
-    font-size: 3.5rem;
-    margin-bottom: var(--spacing-lg);
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 80px;
     background: rgba(var(--primary-rgb), 0.1);
     border-radius: 50%;
+    flex-shrink: 0;
     transition: all var(--transition-fast);
 }
 
-.profile-card:hover .profile-icon {
+.profile-item:hover .profile-icon {
     background: rgba(var(--primary-rgb), 0.2);
     transform: scale(1.1);
 }
 
+.profile-info {
+    flex: 1;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.profile-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.profile-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.profile-link:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.profile-description {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.profile-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.profile-stats .stat-badge {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    border: 1px solid var(--border);
+    transition: all var(--transition-fast);
+}
+
+.profile-item:hover .stat-badge {
+    border-color: rgba(var(--primary-rgb), 0.3);
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+}
+
+/* Responsive Design for Profiles */
+@media (max-width: 768px) {
+    .profile-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-md);
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    
+    .profile-stats {
+        justify-content: center;
+    }
+}
 /* Certifications Section */
 .certifications {
     padding: var(--spacing-3xl) 0;
