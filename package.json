@@ -1,0 +1,25 @@
+{
+  "name": "dinesh-pabboju-portfolio",
+  "version": "1.0.0",
+  "description": "Frontend Developer Portfolio - Dinesh Pabboju",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000",
+    "build": "echo 'Build complete - static files ready'",
+    "preview": "npx serve . -p 4173"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend",
+    "developer",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Dinesh Pabboju",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
