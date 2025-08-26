@@ -166,16 +166,28 @@ class ScrollAnimations {
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
+        this.initEmailJS();
         this.init();
+    }
+
+    initEmailJS() {
+        // Initialize EmailJS with your public key
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
     }
 
     init() {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         if(!this.form) return;
         e.preventDefault();
+        
+        // Show loading state
+        const submitButton = this.form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
         
         const formData = new FormData(this.form);
         const data = {
@@ -184,9 +196,31 @@ class ContactForm {
             message: formData.get('message')
         };
 
-        // Simulate form submission
-        this.showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
-        this.form.reset();
+        try {
+            // Send email using EmailJS
+            const response = await emailjs.send(
+                'YOUR_SERVICE_ID',    // Replace with your service ID
+                'YOUR_TEMPLATE_ID',   // Replace with your template ID
+                {
+                    from_name: data.name,
+                    from_email: data.email,
+                    message: data.message,
+                    to_email: 'dinesh040805@gmail.com' // Your email
+                }
+            );
+            
+            console.log('Email sent successfully:', response);
+            this.showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+            this.form.reset();
+            
+        } catch (error) {
+            console.error('Failed to send email:', error);
+            this.showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+        } finally {
+            // Reset button state
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     }
 
     showNotification(message, type = 'success') {

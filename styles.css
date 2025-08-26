@@ -1163,6 +1163,17 @@ section {
     min-height: 120px;
 }
 
+/* Button disabled state */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:disabled:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px hsla(220, 90%, 56%, 0.3);
+}
 /* Footer */
 .footer {
     background: var(--bg-secondary);
