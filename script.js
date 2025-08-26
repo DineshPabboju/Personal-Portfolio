@@ -351,44 +351,6 @@ class ParallaxEffect {
     }
 }
 
-// Typing Animation for Hero Text
-class TypingAnimation {
-    constructor() {
-        this.element = document.querySelector('.hero-subtitle');
-        this.text = 'Frontend Developer';
-        this.index = 0;
-        this.isDeleting = false;
-        this.init();
-    }
-
-    init() {
-        if (this.element) {
-            this.element.textContent = '';
-            setTimeout(() => this.type(), 1000);
-        }
-    }
-
-    type() {
-        const current = this.text.substring(0, this.index);
-        this.element.textContent = current;
-
-        if (!this.isDeleting && this.index < this.text.length) {
-            this.index++;
-            setTimeout(() => this.type(), 100);
-        } else if (this.isDeleting && this.index > 0) {
-            this.index--;
-            setTimeout(() => this.type(), 50);
-        } else if (!this.isDeleting && this.index === this.text.length) {
-            setTimeout(() => {
-                this.isDeleting = true;
-                this.type();
-            }, 2000);
-        } else if (this.isDeleting && this.index === 0) {
-            this.isDeleting = false;
-            setTimeout(() => this.type(), 500);
-        }
-    }
-}
 
 // Smooth reveal for project cards
 class ProjectCardAnimations {
@@ -421,7 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new IntersectionAnimations();
     new ContactForm();
     new ParallaxEffect();
-    new TypingAnimation();
     new ProjectCardAnimations();
 
     // Add loading animation
