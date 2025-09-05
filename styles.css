@@ -225,7 +225,7 @@ body {
 /* Theme Toggle */
 .theme-toggle {
     background: none;
-    border: 2px solid var(--border);
+    border: 2px solid var(--text-secondary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xs);
     cursor: pointer;
@@ -234,10 +234,12 @@ body {
     gap: var(--spacing-xs);
     transition: all var(--transition-fast);
     font-size: var(--font-size-sm);
+    color: var(--text-secondary);
 }
 
 .theme-toggle:hover {
     border-color: var(--primary);
+    color: var(--primary);
 }
 
 [data-theme="dark"] .sun-icon {
@@ -961,6 +963,51 @@ section {
     
     .certification-actions {
         justify-content: center;
+    }
+    
+    .certification-link {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: var(--font-size-base);
+        min-width: 120px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .certification-item {
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+    
+    .certification-title {
+        font-size: var(--font-size-base);
+        line-height: 1.3;
+    }
+    
+    .certification-header {
+        gap: var(--spacing-sm);
+    }
+    
+    .certification-date {
+        font-size: var(--font-size-xs);
+        padding: 2px var(--spacing-xs);
+    }
+    
+    .certification-issuer {
+        font-size: var(--font-size-sm);
+    }
+    
+    .certification-skills .skill-badge {
+        font-size: 0.7rem;
+        padding: 1px var(--spacing-xs);
+    }
+    
+    .certification-link {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-sm);
+        min-width: 100px;
+        width: 100%;
+        max-width: 200px;
     }
 }
 
