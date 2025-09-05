@@ -242,12 +242,12 @@ body {
     color: var(--primary);
 }
 
-[data-theme="dark"] .sun-icon {
+[data-theme="light"] .sun-icon,
+:root .sun-icon {
     display: none;
 }
 
-[data-theme="light"] .moon-icon,
-:root .moon-icon {
+[data-theme="dark"] .moon-icon {
     display: none;
 }
 
