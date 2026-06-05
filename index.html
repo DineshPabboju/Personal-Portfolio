@@ -13,6 +13,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -82,7 +88,7 @@
                 <div class="hero-image">
                     <div class="profile-image">
                         <img src="assets/images/Portfolio pic.png" alt="Dinesh Pabboju - Frontend Developer"
-                            class="profile-img">
+                            class="profile-img" fetchpriority="high">
                     </div>
                 </div>
             </div>
@@ -400,7 +406,7 @@
                 <div class="profiles-list">
                     <div class="profile-item">
                         <div class="profile-icon">
-                            <img src="assets/icons/icons8-leetcode-24.png" alt="leetcode-icon">
+                            <img src="assets/icons/icons8-leetcode-24.png" alt="leetcode-icon" loading="lazy">
                         </div>
                         <div class="profile-info">
                             <div class="profile-header">
@@ -419,7 +425,7 @@
                     
                     <div class="profile-item">
                         <div class="profile-icon">
-                            <img src="assets/icons/icons8-codechef-50.png" alt="codechef-icon">
+                            <img src="assets/icons/icons8-codechef-50.png" alt="codechef-icon" loading="lazy">
                         </div>
                         <div class="profile-info">
                             <div class="profile-header">
@@ -438,7 +444,7 @@
                     
                     <div class="profile-item">
                         <div class="profile-icon">
-                            <img src="assets/icons/icons8-hackerrank-24.png" alt="hackerrank-icon">
+                            <img src="assets/icons/icons8-hackerrank-24.png" alt="hackerrank-icon" loading="lazy">
                         </div>
                         <div class="profile-info">
                             <div class="profile-header">
@@ -457,7 +463,7 @@
                     
                     <div class="profile-item">
                         <div class="profile-icon">
-                            <img src="assets/icons/gfg-gg-logo.svg" alt="geeksforgeeks-icon">
+                            <img src="assets/icons/gfg-gg-logo.svg" alt="geeksforgeeks-icon" loading="lazy">
                         </div>
                         <div class="profile-info">
                             <div class="profile-header">
