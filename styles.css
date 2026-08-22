@@ -547,7 +547,7 @@ section:not(.hero) .section-title::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 8px;
+    font-size: 30px;
 }
 
 .education-period {
