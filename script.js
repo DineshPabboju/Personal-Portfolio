@@ -273,8 +273,18 @@ class ClipboardHelper {
 }
 
 // ==========================================================================
-// Contact Form Handler
+// Contact Form Configuration (EmailJS)
 // ==========================================================================
+// 1. Create a free account at https://www.emailjs.com/
+// 2. Add an Email Service (Gmail) to get your SERVICE_ID
+// 3. Create an Email Template to get your TEMPLATE_ID
+// 4. Go to Account > Security to copy your PUBLIC_KEY
+const EMAILJS_CONFIG = {
+    SERVICE_ID: 'service_l4feu8g',     // e.g., 'service_abc123'
+    TEMPLATE_ID: 'template_bcbbuy5',   // e.g., 'template_xyz456'
+    PUBLIC_KEY: 'Bi3X3vlcnQimA_pNk'      // e.g., 'user_123456789'
+};
+
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
@@ -283,6 +293,9 @@ class ContactForm {
 
     init() {
         if (!this.form) return;
+        if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+            emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+        }
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
@@ -297,22 +310,34 @@ class ContactForm {
         submitButton.disabled = true;
 
         const formData = new FormData(this.form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        const name = formData.get('name')?.toString().trim();
+        const email = formData.get('email')?.toString().trim();
+        const subject = formData.get('subject')?.toString().trim();
+        const message = formData.get('message')?.toString().trim();
+
+        if (!name || !email || !message) {
+            this.showNotification('Please fill in all required fields.', 'error');
+            submitButton.innerHTML = originalHtml;
+            submitButton.disabled = false;
+            return;
+        }
 
         try {
-            // Check if EmailJS is configured
-            if (typeof emailjs !== 'undefined' && emailjs.send) {
-                // If user replaced placeholder keys:
+            // Check if user has replaced placeholder keys
+            const isConfigured = EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+                                 EMAILJS_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+                                 EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+            if (isConfigured && typeof emailjs !== 'undefined') {
                 await emailjs.send(
-                    'YOUR_SERVICE_ID',
-                    'YOUR_TEMPLATE_ID',
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
                     {
+                        name: name,
                         from_name: name,
+                        email: email,
                         from_email: email,
-                        subject: subject,
+                        subject: subject || 'Portfolio Contact Inquiry',
                         message: message,
                         to_email: 'dinesh040805@gmail.com'
                     }
@@ -320,20 +345,18 @@ class ContactForm {
                 this.showNotification('Thank you! Your message has been sent successfully.', 'success');
                 this.form.reset();
             } else {
-                // Fallback simulation if keys not yet configured
+                // Friendly notice when keys haven't been plugged in yet
                 setTimeout(() => {
-                    this.showNotification(`Thank you, ${name}! Your message has been prepared.`, 'success');
+                    this.showNotification(`Thank you, ${name}! (Configure EMAILJS_CONFIG in script.js to receive live emails)`, 'success');
                     this.form.reset();
                     submitButton.innerHTML = originalHtml;
                     submitButton.disabled = false;
-                }, 800);
+                }, 700);
                 return;
             }
         } catch (error) {
-            console.warn('EmailJS service notification:', error);
-            // Graceful notice
-            this.showNotification('Message noted! You can also email dinesh040805@gmail.com directly.', 'success');
-            this.form.reset();
+            console.error('EmailJS transmission error:', error);
+            this.showNotification('Message delivery failed. Please email dinesh040805@gmail.com directly.', 'error');
         } finally {
             submitButton.innerHTML = originalHtml;
             submitButton.disabled = false;
