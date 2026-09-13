@@ -293,8 +293,9 @@ class ContactForm {
 
     init() {
         if (!this.form) return;
-        if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-            emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+        const emailClient = window.emailjs;
+        if (emailClient && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+            emailClient.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
         }
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
@@ -323,13 +324,20 @@ class ContactForm {
         }
 
         try {
-            // Check if user has replaced placeholder keys
-            const isConfigured = EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' &&
-                                 EMAILJS_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
-                                 EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+            // Check if user has provided valid EmailJS credentials
+            const isConfigured = Boolean(
+                EMAILJS_CONFIG.SERVICE_ID &&
+                EMAILJS_CONFIG.TEMPLATE_ID &&
+                EMAILJS_CONFIG.PUBLIC_KEY &&
+                !EMAILJS_CONFIG.SERVICE_ID.includes('YOUR_') &&
+                !EMAILJS_CONFIG.TEMPLATE_ID.includes('YOUR_') &&
+                !EMAILJS_CONFIG.PUBLIC_KEY.includes('YOUR_')
+            );
 
-            if (isConfigured && typeof emailjs !== 'undefined') {
-                await emailjs.send(
+            const emailClient = window.emailjs;
+
+            if (isConfigured && emailClient && typeof emailClient.send === 'function') {
+                await emailClient.send(
                     EMAILJS_CONFIG.SERVICE_ID,
                     EMAILJS_CONFIG.TEMPLATE_ID,
                     {
@@ -337,9 +345,13 @@ class ContactForm {
                         from_name: name,
                         email: email,
                         from_email: email,
+                        reply_to: email,
                         subject: subject || 'Portfolio Contact Inquiry',
                         message: message,
                         to_email: 'dinesh040805@gmail.com'
+                    },
+                    {
+                        publicKey: EMAILJS_CONFIG.PUBLIC_KEY
                     }
                 );
                 this.showNotification('Thank you! Your message has been sent successfully.', 'success');
@@ -356,7 +368,8 @@ class ContactForm {
             }
         } catch (error) {
             console.error('EmailJS transmission error:', error);
-            this.showNotification('Message delivery failed. Please email dinesh040805@gmail.com directly.', 'error');
+            const errorMsg = error?.text || (typeof error === 'string' ? error : 'Check network/keys');
+            this.showNotification(`Message delivery failed (${errorMsg}). Please email dinesh040805@gmail.com directly.`, 'error');
         } finally {
             submitButton.innerHTML = originalHtml;
             submitButton.disabled = false;
