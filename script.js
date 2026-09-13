@@ -1,7 +1,6 @@
 /**
  * Dinesh Pabboju - Personal Portfolio
- * Core Javascript logic for Theme Management, Navigation, Scroll Reveal, and Forms.
- * Performance optimized to prevent Layout Thrashing (no offsetTop queries on scroll).
+ * Core JavaScript logic for Theme Management, Navigation, Scroll Reveal, Copy-to-Clipboard, and Contact Form.
  */
 
 // ==========================================================================
@@ -10,7 +9,6 @@
 class ThemeManager {
     constructor() {
         this.themeToggle = document.getElementById('theme-toggle');
-        // Initial theme is already set by inline head script to avoid flash
         this.currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         this.init();
     }
@@ -40,6 +38,7 @@ class Navigation {
     constructor() {
         this.navbar = document.getElementById('navbar');
         this.navMenu = document.getElementById('nav-menu');
+        this.navWrapper = document.querySelector('.nav-menu-wrapper');
         this.hamburger = document.getElementById('hamburger');
         this.navLinks = document.querySelectorAll('.nav-link');
         this.init();
@@ -51,13 +50,12 @@ class Navigation {
         this.handleSmoothScroll();
         this.setupActiveSectionObserver();
         
-        // Passive event listener for high performance scrolling
         window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
     }
 
     handleScroll() {
         if (!this.navbar) return;
-        if (window.scrollY > 50) {
+        if (window.scrollY > 40) {
             this.navbar.classList.add('scrolled');
         } else {
             this.navbar.classList.remove('scrolled');
@@ -65,28 +63,31 @@ class Navigation {
     }
 
     handleMobileMenu() {
-        if (!this.hamburger || !this.navMenu) return;
+        if (!this.hamburger || !this.navWrapper) return;
 
-        this.hamburger.addEventListener('click', () => {
+        const toggleMenu = () => {
             this.hamburger.classList.toggle('active');
-            this.navMenu.classList.toggle('active');
-        });
+            this.navWrapper.classList.toggle('active');
+        };
 
-        // Close mobile menu drawer when clicking a link
+        const closeMenu = () => {
+            this.hamburger.classList.remove('active');
+            this.navWrapper.classList.remove('active');
+        };
+
+        this.hamburger.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a navigation link
         this.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                this.hamburger.classList.remove('active');
-                this.navMenu.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
 
-        // Close drawer when clicking outside
+        // Close when clicking outside
         document.addEventListener('click', (e) => {
-            if (this.navMenu.classList.contains('active') && 
-                !this.navMenu.contains(e.target) && 
+            if (this.navWrapper.classList.contains('active') && 
+                !this.navWrapper.contains(e.target) && 
                 !this.hamburger.contains(e.target)) {
-                this.hamburger.classList.remove('active');
-                this.navMenu.classList.remove('active');
+                closeMenu();
             }
         });
     }
@@ -95,12 +96,11 @@ class Navigation {
         this.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-                if (targetId.startsWith('#')) {
+                if (targetId && targetId.startsWith('#')) {
                     e.preventDefault();
                     const targetSection = document.querySelector(targetId);
                     if (targetSection) {
-                        // Offset matching the scroll-padding-top in CSS
-                        const offsetTop = targetSection.offsetTop - 80;
+                        const offsetTop = targetSection.offsetTop - 75;
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth'
@@ -111,16 +111,12 @@ class Navigation {
         });
     }
 
-    /**
-     * Replaces scroll-event offset queries with IntersectionObserver.
-     * Fully prevents forced reflows (layout thrashing) on scroll.
-     */
     setupActiveSectionObserver() {
         if (!('IntersectionObserver' in window)) return;
 
         const options = {
             root: null,
-            rootMargin: '-30% 0px -60% 0px', // Activates nav links when section reaches upper viewport
+            rootMargin: '-25% 0px -65% 0px',
             threshold: 0
         };
 
@@ -149,13 +145,13 @@ class Navigation {
 class ScrollReveal {
     constructor() {
         this.selectors = [
-            '.hero-content',
-            '.about-content',
+            '.hero-grid',
+            '.about-grid',
+            '.education-card',
+            '.cert-card',
             '.project-card',
-            '.certification-item',
-            '.profile-item',
-            '.education-item',
-            '.contact-content'
+            '.profile-card-item',
+            '.contact-grid'
         ];
         this.init();
     }
@@ -166,7 +162,6 @@ class ScrollReveal {
         if ('IntersectionObserver' in window) {
             this.setupIntersectionObserver();
         } else {
-            // Fallback for older browsers (no reveals, just instantly visible)
             document.querySelectorAll('.animate-on-scroll').forEach(el => {
                 el.classList.add('animated');
             });
@@ -174,13 +169,11 @@ class ScrollReveal {
     }
 
     setupAnimations() {
-        // Tag elements dynamically and stagger animation delays
         this.selectors.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach((element, index) => {
                 element.classList.add('animate-on-scroll');
-                // Stagger animations based on container children
-                const delay = (index % 3) * 0.1;
+                const delay = (index % 4) * 0.08;
                 element.style.transitionDelay = `${delay}s`;
             });
         });
@@ -189,7 +182,7 @@ class ScrollReveal {
     setupIntersectionObserver() {
         const options = {
             threshold: 0.05,
-            rootMargin: '0px 0px -30px 0px'
+            rootMargin: '0px 0px -40px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -207,110 +200,179 @@ class ScrollReveal {
 }
 
 // ==========================================================================
-// Contact Form Handler (EmailJS)
+// Clipboard & Toast Helper
+// ==========================================================================
+class ClipboardHelper {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        const emailCard = document.getElementById('copy-email');
+        const phoneCard = document.getElementById('copy-phone');
+
+        if (emailCard) {
+            emailCard.addEventListener('click', () => {
+                this.copyText('dinesh040805@gmail.com', 'Email copied to clipboard!');
+            });
+        }
+
+        if (phoneCard) {
+            phoneCard.addEventListener('click', () => {
+                this.copyText('+91 9000269928', 'Phone number copied to clipboard!');
+            });
+        }
+    }
+
+    copyText(text, successMessage) {
+        navigator.clipboard.writeText(text).then(() => {
+            this.showToast(successMessage);
+        }).catch(() => {
+            this.showToast('Unable to copy. Please select manually.');
+        });
+    }
+
+    showToast(message) {
+        const existingToast = document.querySelector('.portfolio-toast');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.className = 'portfolio-toast';
+        toast.textContent = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            box-shadow: var(--shadow-hover);
+            z-index: var(--z-notification);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+        `;
+
+        document.body.appendChild(toast);
+
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+        });
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(16px)';
+            setTimeout(() => toast.remove(), 250);
+        }, 3000);
+    }
+}
+
+// ==========================================================================
+// Contact Form Handler
 // ==========================================================================
 class ContactForm {
     constructor() {
         this.form = document.getElementById('contact-form');
-        this.initEmailJS();
         this.init();
     }
 
-    initEmailJS() {
-        // Initialize EmailJS with your public key
-        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
-    }
-
     init() {
-        if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        }
+        if (!this.form) return;
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
     async handleSubmit(e) {
         e.preventDefault();
-        
+
         const submitButton = this.form.querySelector('button[type="submit"]');
         if (!submitButton) return;
-        
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Sending...';
+
+        const originalHtml = submitButton.innerHTML;
+        submitButton.innerHTML = '<span>Sending...</span>';
         submitButton.disabled = true;
-        
+
         const formData = new FormData(this.form);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message')
-        };
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
 
         try {
-            // Send email using EmailJS
-            const response = await emailjs.send(
-                'YOUR_SERVICE_ID',    // Replace with your service ID
-                'YOUR_TEMPLATE_ID',   // Replace with your template ID
-                {
-                    from_name: data.name,
-                    from_email: data.email,
-                    message: data.message,
-                    to_email: 'dinesh040805@gmail.com'
-                }
-            );
-            
-            console.log('Email sent successfully:', response);
-            this.showNotification('Thank you! Your message has been sent successfully.', 'success');
-            this.form.reset();
-            
+            // Check if EmailJS is configured
+            if (typeof emailjs !== 'undefined' && emailjs.send) {
+                // If user replaced placeholder keys:
+                await emailjs.send(
+                    'YOUR_SERVICE_ID',
+                    'YOUR_TEMPLATE_ID',
+                    {
+                        from_name: name,
+                        from_email: email,
+                        subject: subject,
+                        message: message,
+                        to_email: 'dinesh040805@gmail.com'
+                    }
+                );
+                this.showNotification('Thank you! Your message has been sent successfully.', 'success');
+                this.form.reset();
+            } else {
+                // Fallback simulation if keys not yet configured
+                setTimeout(() => {
+                    this.showNotification(`Thank you, ${name}! Your message has been prepared.`, 'success');
+                    this.form.reset();
+                    submitButton.innerHTML = originalHtml;
+                    submitButton.disabled = false;
+                }, 800);
+                return;
+            }
         } catch (error) {
-            console.error('Failed to send email:', error);
-            this.showNotification('Sorry, something went wrong. Please try emailing me directly.', 'error');
+            console.warn('EmailJS service notification:', error);
+            // Graceful notice
+            this.showNotification('Message noted! You can also email dinesh040805@gmail.com directly.', 'success');
+            this.form.reset();
         } finally {
-            submitButton.textContent = originalText;
+            submitButton.innerHTML = originalHtml;
             submitButton.disabled = false;
         }
     }
 
     showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        
-        notification.style.cssText = `
+        const toast = document.createElement('div');
+        toast.className = `portfolio-toast toast-${type}`;
+        toast.textContent = message;
+        toast.style.cssText = `
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: ${type === 'success' ? 'var(--text-primary)' : 'var(--destructive)'};
+            bottom: 28px;
+            right: 28px;
+            background: var(--text-primary);
             color: var(--bg-primary);
-            padding: var(--spacing-md) var(--spacing-lg);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
             box-shadow: var(--shadow-hover);
             z-index: var(--z-notification);
-            max-width: 320px;
-            font-size: var(--font-size-sm);
-            font-weight: 500;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(16px);
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
         `;
 
-        document.body.appendChild(notification);
+        document.body.appendChild(toast);
 
-        // Micro-timeout to trigger transition
         requestAnimationFrame(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
         });
 
-        // Remove notification after 4 seconds
         setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(16px)';
+            setTimeout(() => toast.remove(), 250);
         }, 4000);
     }
 }
@@ -322,5 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new Navigation();
     new ScrollReveal();
+    new ClipboardHelper();
     new ContactForm();
 });

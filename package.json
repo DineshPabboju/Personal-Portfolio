@@ -1,7 +1,7 @@
 {
   "name": "dinesh-portfolio",
   "version": "1.0.0",
-  "description": "Frontend Developer Portfolio - Dinesh Pabboju",
+  "description": "Full Stack Developer Portfolio - Dinesh Pabboju",
   "main": "index.html",
   "scripts": {
     "start": "npx serve .",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "portfolio",
-    "frontend",
+    "full-stack",
     "developer",
     "html",
     "css",

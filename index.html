@@ -5,16 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/images/Portfolio pic.png" type="image/x-icon">
-    <title>Dinesh Pabboju- Frontend Developer</title>
-    <meta name="description" content="Frontend Developer Portfolio - Dinesh Pabboju">
+    <title>Dinesh Pabboju — Full Stack Developer</title>
+    <meta name="description" content="Personal portfolio of Dinesh Pabboju - Full Stack Developer crafting responsive, scalable, and high-performance web applications.">
+    
+    <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Inline Theme Check to prevent FOUC -->
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
         })();
@@ -24,544 +30,692 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <header class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Dinesh Pabboju</a>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#education" class="nav-link">Education</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#certifications" class="nav-link">Certifications</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#profiles" class="nav-link">Coding Profiles</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                        <span class="sun-icon">☀️</span>
-                        <span class="moon-icon">🌙</span>
-                    </button>
-                </li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+            <a href="#home" class="nav-logo" aria-label="Dinesh Pabboju Home">
+                <span class="logo-mark">DP</span>
+                <span class="logo-name">Dinesh Pabboju</span>
+            </a>
+            
+            <nav class="nav-menu-wrapper">
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                    <li class="nav-item"><a href="#certifications" class="nav-link">Certifications</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#profiles" class="nav-link">Profiles</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        Hi, I'm <span class="gradient-text">Dinesh Pabboju</span>
-                    </h1>
-                    <h2 class="hero-subtitle">Frontend Developer</h2>
-                    <p class="hero-description">
-                        I create beautiful, responsive, and user-friendly web experiences using modern technologies and
-                        best practices.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="assets/DineshPabboju.pdf" download="DineshPabboju.pdf"
-                            class="btn btn-secondary">Resume</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="profile-image">
-                        <img src="assets/images/Portfolio pic.png" alt="Dinesh Pabboju - Frontend Developer"
-                            class="profile-img" fetchpriority="high">
-                    </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know me and my skills</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Welcome to my portfolio!
-                        I'm Dinesh Pabboju, a passionate Computer Science and Engineering student with a strong interest
-                        in Frontend Development. I specialize in crafting beautiful, responsive, and user-focused web
-                        interfaces using modern technologies like HTML, CSS, and JavaScript.
-
-                        I love transforming ideas into clean, functional designs that offer smooth user experiences.
-                        Whether it’s building interactive websites, solving coding challenges, or learning new tools,
-                        I’m always excited to grow and contribute to meaningful tech projects.
-
-                        With a keen eye for detail and a mindset rooted in problem-solving, I aim to build digital
-                        solutions that not only work flawlessly but also leave a lasting impression. I'm constantly
-                        exploring new ways to stay ahead in the fast-evolving world of web development.
-                    </p>
-                    <!-- <p>
-                        When I'm not coding, you can find me exploring new technologies, contributing
-                        to open source projects, or sharing my knowledge with the developer community.
-                    </p> -->
-                </div>
-                <div class="skills">
-                    <h3>My Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">JavaScript</div>
-                        <div class="skill-item">React</div>
-                        <div class="skill-item">HTML5</div>
-                        <div class="skill-item">CSS3</div>
-                        <div class="skill-item">Tailwind CSS</div>
-                        <div class="skill-item">FastAPI</div>
-                        <div class="skill-item">Git</div>
-                        <div class="skill-item">REST APIs</div>
-                        <div class="skill-item">Java</div>
-                        <div class="skill-item">SQL</div>
-                        <div class="skill-item">Python</div>
-                        <div class="skill-item">MySQL</div>
-                        <div class="skill-item">PostgreSQL</div>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <span class="status-indicator">
+                                <span class="status-dot"></span>
+                                <span class="status-ring"></span>
+                            </span>
+                            <span class="badge-text">Available for Opportunities</span>
+                        </div>
                         
+                        <h1 class="hero-title">
+                            Hi, I'm <span class="accent-text">Dinesh Pabboju</span>
+                        </h1>
+                        
+                        <p class="hero-role">Full Stack Developer</p>
+                        
+                        <p class="hero-description">
+                            I design and build robust, full-stack web applications and high-performance digital solutions. 
+                            Passionate about clean architecture, scalable backend systems, and intuitive user experiences.
+                        </p>
 
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">My academic journey and qualifications</p>
-            </div>
-            <div class="education-content">
-                <div class="education-timeline">
-                    <div class="education-item">
-                        <div class="education-icon">
-                            <span>🎓</span>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn btn-primary">
+                                <span>Explore Projects</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                            </a>
+                            <a href="assets/DineshPabboju.pdf" download="DineshPabboju.pdf" class="btn btn-secondary">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                <span>Resume</span>
+                            </a>
                         </div>
-                        <div class="education-details">
-                            <div class="education-period">2022 - 2026</div>
-                            <h3 class="education-degree">Bachelor of Technology</h3>
-                            <h4 class="education-field">Computer Science and Engineering(Data Science)</h4>
-                            <p class="education-institution">CMR Institute of Technology</p>
-                            <p class="education-location">Hyderabad, Telangana</p>
-                            <div class="education-highlights">
-                                <span class="highlight-item">Data Structures & Algorithms</span>
-                                <span class="highlight-item">Web Development</span>
-                                <span class="highlight-item">Software Engineering</span>
-                                <span class="highlight-item">Database Management</span>
+
+                        <!-- Hero Credibility Metrics -->
+                        <div class="hero-metrics">
+                            <div class="metric-item">
+                                <span class="metric-number">5+</span>
+                                <span class="metric-label">Live Projects</span>
+                            </div>
+                            <div class="metric-divider"></div>
+                            <div class="metric-item">
+                                <span class="metric-number">500+</span>
+                                <span class="metric-label">DSA Solved</span>
+                            </div>
+                            <div class="metric-divider"></div>
+                            <div class="metric-item">
+                                <span class="metric-number">2026</span>
+                                <span class="metric-label">B.Tech Grad</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- <div class="education-item">
-                        <div class="education-icon">
-                            <span>📚</span>
-                        </div>
-                        <div class="education-details">
-                            <div class="education-period">2020 - 2022</div>
-                            <h3 class="education-degree">Intermediate (12th Grade)</h3>
-                            <h4 class="education-field">Mathematics, Physics, Chemistry</h4>
-                            <p class="education-institution">Masterminds Junior College</p>
-                            <p class="education-location">Siddipet, Telangana</p>
-                            <div class="education-highlights">
-                                <span class="highlight-item">Mathematics</span>
-                                <span class="highlight-item">Physics</span>
-                                <span class="highlight-item">Chemistry</span>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Certifications</h2>
-                <p class="section-subtitle">Professional certifications and achievements</p>
-            </div>
-            <div class="certifications-content">
-                <div class="certifications-list">
-                    <div class="certification-item">
-                        <div class="certification-icon">💻</div>
-                        <div class="certification-info">
-                            <div class="certification-header">
-                                <h3 class="certification-title">Smart Coder</h3>
-                                <span class="certification-date">2025</span>
+                    <div class="hero-visual">
+                        <div class="avatar-card">
+                            <div class="avatar-glow"></div>
+                            <div class="avatar-frame">
+                                <img src="assets/images/Portfolio pic.png" alt="Dinesh Pabboju" class="avatar-img" fetchpriority="high">
                             </div>
-                            <p class="certification-issuer">Smart Interviews</p>
-                                <div class="certification-skills">
-                                    <span class="skill-badge">DSA</span>
-                                    <span class="skill-badge">Problem Solving</span>
-                                    <span class="skill-badge">Logical Thinking</span>
-                                    <span class="skill-badge">Java</span>
+                            <div class="avatar-floating-tag">
+                                <span class="tag-icon">⚡</span>
+                                <div class="tag-meta">
+                                    <span class="tag-title">Computer Science</span>
+                                    <span class="tag-sub">Data Science Focus</span>
                                 </div>
-                                <div class="certification-actions">
-                                    <a href="#" class="certification-link" target="_blank">View Certificate</a>
-                                </div>     
-                        </div>
-                    </div>
-                  
-                    
-                    
-                    <div class="certification-item">
-                        <div class="certification-icon">🎯</div>
-                        <div class="certification-info">
-                            <div class="certification-header">
-                                <h3 class="certification-title">Postman API Fundamentals Student Expert</h3>
-                                <span class="certification-date">2025</span>
                             </div>
-                            <p class="certification-issuer">Postman</p>
-                            <div class="certification-skills">
-                                <span class="skill-badge">Rest APIs</span>
-                                <span class="skill-badge">API Testing</span>
-                            </div>
-                            <div class="certification-actions">
-                                <a href="#" class="certification-link" target="_blank">View Certificate</a>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <div class="certification-item">
-                        <div class="certification-icon">🏆</div>
-                        <div class="certification-info">
-                            <div class="certification-header">
-                                <h3 class="certification-title">Java Programming</h3>
-                                <span class="certification-date">2024</span>
-                            </div>
-                            <p class="certification-issuer">HackerRank</p>
-                            <div class="certification-skills">
-                                <span class="skill-badge">Java Programming</span>
-                                <span class="skill-badge">OOP</span>
-                                <span class="skill-badge">Problem Solving</span>
-                            </div>
-                            <div class="certification-actions">
-                                <a href="#" class="certification-link" target="_blank">View Certificate</a>
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My Projects</h2>
-                <p class="section-subtitle">Some of my recent work</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">💰</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Expense Tracker App</h3>
-                        <p class="project-description">
-                            A sleek and user-friendly expense tracker app to log and manage your daily expenses with
-                            ease.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">Javascript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://expense-tracker-app-04.netlify.app/" class="project-link">Live Demo</a>
-                            <a href="https://github.com/DineshPabboju/Expense-Tracker-App"
-                                class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🌤️</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Weather App</h3>
-                        <p class="project-description">
-                            A clean and responsive weather app that provides real-time weather updates based on your
-                            location.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">Javascript</span>
-                            <span class="tech-tag">Weather API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://weather-app-d-04.netlify.app/" class="project-link">Live Demo</a>
-                            <a href="https://github.com/DineshPabboju/Weather-App" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🍳</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Recipe App</h3>
-                        <p class="project-description">
-                            A modern recipe app to discover, save, and follow step-by-step cooking instructions with
-                            ease.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">Javascript</span>
-                            <span class="tech-tag">Recipe API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://recipe-craze.netlify.app/" class="project-link">Live Demo</a>
-                            <a href="https://github.com/DineshPabboju/Recipe-App" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🎮</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Tic-Tac-Toe Game</h3>
-                        <p class="project-description">
-                            A classic Tic Tac Toe game with a clean interface and smooth gameplay for two players.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">Javascript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://tic-tac-toe-04-game.netlify.app/" class="project-link">Live Demo</a>
-                            <a href="https://github.com/DineshPabboju/Tic-Tac-Toe-Game" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">💱</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Currency Converter</h3>
-                        <p class="project-description">
-                            A real-time currency converter app with a simple interface to convert between multiple
-                            currencies instantly.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JS</span>
-                            <span class="tech-tag">Exchange-rate API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://currency-converter-04.netlify.app/" class="project-link">Live Demo</a>
-                            <a href="https://github.com/DineshPabboju/Currency-Converter"
-                                class="project-link">GitHub</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Coding Profiles Section -->
-    <section id="profiles" class="profiles">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Coding Profiles</h2>
-                <p class="section-subtitle">Connect with me across different platforms</p>
-            </div>
-            <div class="profiles-content">
-                <div class="profiles-list">
-                    <div class="profile-item">
-                        <div class="profile-icon">
-                            <img src="assets/icons/icons8-leetcode-24.png" alt="leetcode-icon" loading="lazy">
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>01 // ABOUT ME</span>
+                    </div>
+                    <h2 class="section-title">Background &amp; Expertise</h2>
+                    <p class="section-subtitle">Bridging robust backend engineering with intuitive, human-centered web experiences.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-narrative">
+                        <p class="lead-text">
+                            I'm Dinesh Pabboju, a Computer Science &amp; Engineering undergraduate at CMR Institute of Technology with a strong passion for full-stack software development.
+                        </p>
+                        <p>
+                            I specialize in building end-to-end web applications—combining responsive, accessible frontend interfaces with reliable REST APIs, database design, and clean backend logic. My development workflow emphasizes modular architecture, scalable code, and high performance across the entire stack.
+                        </p>
+                        <p>
+                            Beyond building full-stack applications, I regularly sharpen my analytical thinking by solving algorithmic challenges on platforms like LeetCode and CodeChef, fostering a solid foundation in data structures and scalable problem-solving.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-point">
+                                <span class="point-icon"><i class="fa-solid fa-check"></i></span>
+                                <span>End-to-end full stack web development</span>
+                            </div>
+                            <div class="highlight-point">
+                                <span class="point-icon"><i class="fa-solid fa-check"></i></span>
+                                <span>Component-driven clean frontend architecture</span>
+                            </div>
+                            <div class="highlight-point">
+                                <span class="point-icon"><i class="fa-solid fa-check"></i></span>
+                                <span>RESTful API design, databases &amp; state management</span>
+                            </div>
                         </div>
-                        <div class="profile-info">
-                            <div class="profile-header">
-                                <h3 class="profile-title">LeetCode</h3>
-                                <a href="https://leetcode.com/u/22r01a6745" class="profile-link" target="_blank">
-                                    View Profile
+                    </div>
+
+                    <div class="skills-card">
+                        <h3 class="skills-heading">Technical Stack</h3>
+                        
+                        <div class="skills-category">
+                            <h4 class="category-label">Frontend &amp; UI</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">JavaScript (ES6+)</span>
+                                <span class="skill-tag">React.js</span>
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">Tailwind CSS</span>
+                                <span class="skill-tag">Responsive Design</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4 class="category-label">Backend &amp; Data</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">FastAPI</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">REST APIs</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h4 class="category-label">Tools &amp; Workflow</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Git &amp; GitHub</span>
+                                <span class="skill-tag">Postman</span>
+                                <span class="skill-tag">VS Code</span>
+                                <span class="skill-tag">Vite</span>
+                                <span class="skill-tag">Netlify</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>02 // ACADEMIC JOURNEY</span>
+                    </div>
+                    <h2 class="section-title">Education</h2>
+                    <p class="section-subtitle">Formal foundation in Computer Science and Engineering.</p>
+                </div>
+
+                <div class="education-container">
+                    <div class="education-card">
+                        <div class="education-timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-line"></div>
+                        </div>
+                        <div class="education-body">
+                            <div class="education-head">
+                                <div>
+                                    <span class="education-badge">Undergraduate Degree</span>
+                                    <h3 class="education-degree">Bachelor of Technology</h3>
+                                    <h4 class="education-spec">Computer Science and Engineering (Data Science)</h4>
+                                </div>
+                                <span class="education-year">2022 — 2026</span>
+                            </div>
+                            <div class="education-meta">
+                                <span class="meta-inst"><i class="fa-solid fa-building-columns"></i> CMR Institute of Technology</span>
+                                <span class="meta-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad, Telangana</span>
+                            </div>
+                            <p class="education-notes">
+                                Comprehensive coursework covering foundational algorithms, database architecture, modern web development, and software design paradigms.
+                            </p>
+                            <div class="education-tags">
+                                <span class="edu-tag">Data Structures &amp; Algorithms</span>
+                                <span class="edu-tag">Web Technologies</span>
+                                <span class="edu-tag">Database Management</span>
+                                <span class="edu-tag">Software Engineering</span>
+                                <span class="edu-tag">Object-Oriented Programming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>03 // CREDENTIALS</span>
+                    </div>
+                    <h2 class="section-title">Certifications</h2>
+                    <p class="section-subtitle">Verified professional credentials and continuous learning achievements.</p>
+                </div>
+
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon-wrapper">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-top">
+                                <h3 class="cert-title">Smart Coder Certification</h3>
+                                <span class="cert-year">2025</span>
+                            </div>
+                            <p class="cert-issuer">Smart Interviews</p>
+                            <p class="cert-desc">Rigorous training in advanced Data Structures, Algorithmic Thinking, and problem solving in Java.</p>
+                            <div class="cert-tags">
+                                <span class="cert-tag">DSA</span>
+                                <span class="cert-tag">Algorithms</span>
+                                <span class="cert-tag">Java</span>
+                                <span class="cert-tag">Problem Solving</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon-wrapper">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-top">
+                                <h3 class="cert-title">API Fundamentals Student Expert</h3>
+                                <span class="cert-year">2025</span>
+                            </div>
+                            <p class="cert-issuer">Postman</p>
+                            <p class="cert-desc">Demonstrated practical competence in REST API development, testing, authentication, and HTTP workflows.</p>
+                            <div class="cert-tags">
+                                <span class="cert-tag">REST APIs</span>
+                                <span class="cert-tag">Postman</span>
+                                <span class="cert-tag">API Testing</span>
+                                <span class="cert-tag">HTTP Protocols</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon-wrapper">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div class="cert-content">
+                            <div class="cert-top">
+                                <h3 class="cert-title">Java Programming Certification</h3>
+                                <span class="cert-year">2024</span>
+                            </div>
+                            <p class="cert-issuer">HackerRank</p>
+                            <p class="cert-desc">Verified proficiency in core Java syntax, object-oriented concepts, exception handling, and collections.</p>
+                            <div class="cert-tags">
+                                <span class="cert-tag">Java</span>
+                                <span class="cert-tag">OOP</span>
+                                <span class="cert-tag">Data Structures</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>04 // PORTFOLIO</span>
+                    </div>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Real-world applications built with clean code, responsive layouts, and modern web standards.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Project 1: folio - Job Application Tracker -->
+                    <article class="project-card">
+                        <div class="project-browser-frame">
+                            <div class="browser-header">
+                                <span class="browser-dot red"></span>
+                                <span class="browser-dot yellow"></span>
+                                <span class="browser-dot green"></span>
+                                <span class="browser-url">folio-job-track.vercel.app</span>
+                            </div>
+                            <div class="project-img-wrapper">
+                                <img src="assets/images/projects/folio.png" alt="folio Job Application Tracker Preview" class="project-image" loading="lazy">
+                                <div class="project-hover-overlay">
+                                    <a href="https://folio-job-track.vercel.app" target="_blank" rel="noopener noreferrer" class="overlay-btn" aria-label="Open folio live demo">
+                                        <span>View Live Demo</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-category">Full Stack &amp; Career Pipeline</div>
+                            <h3 class="project-title">folio — Job Application Tracker</h3>
+                            <p class="project-summary">
+                                Full-stack Kanban tracker managing 100+ job applications across 4 interactive pipeline stages. Built with async REST APIs using PostgreSQL and SQLAlchemy connection pooling (&lt;50ms response times), JWT authentication with Argon2 hashing, and recruiting funnel analytics.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-pill">React</span>
+                                <span class="tech-pill">TypeScript</span>
+                                <span class="tech-pill">FastAPI</span>
+                                <span class="tech-pill">PostgreSQL</span>
+                                <span class="tech-pill">SQLAlchemy</span>
+                                <span class="tech-pill">OAuth2 / JWT</span>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="https://folio-job-track.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-primary">
+                                    <span>Live Demo</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </a>
+                                <a href="https://github.com/DineshPabboju/folio" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-secondary" aria-label="folio GitHub Repository">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
                                 </a>
                             </div>
-                            <p class="profile-description">Algorithm and data structure challenges</p>
-                            <div class="profile-stats">
-                                <span class="stat-badge">200+ Problems</span>
-                                <span class="stat-badge">Java</span>
-                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="profile-item">
-                        <div class="profile-icon">
-                            <img src="assets/icons/icons8-codechef-50.png" alt="codechef-icon" loading="lazy">
-                        </div>
-                        <div class="profile-info">
-                            <div class="profile-header">
-                                <h3 class="profile-title">CodeChef</h3>
-                                <a href="https://codechef.com/users/ds_22r01a6745" class="profile-link" target="_blank">
-                                    View Profile
-                                </a>
-                            </div>
-                            <p class="profile-description">Competitive programming contests</p>
-                            <div class="profile-stats">
-                                <span class="stat-badge">1200+ Rating</span>
-                                <span class="stat-badge">50+ Contests</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-item">
-                        <div class="profile-icon">
-                            <img src="assets/icons/icons8-hackerrank-24.png" alt="hackerrank-icon" loading="lazy">
-                        </div>
-                        <div class="profile-info">
-                            <div class="profile-header">
-                                <h3 class="profile-title">HackerRank</h3>
-                                <a href="https://hackerrank.com/ds22r01a6745" class="profile-link" target="_blank">
-                                    View Profile
-                                </a>
-                            </div>
-                            <p class="profile-description">Programming skills and certifications</p>
-                            <div class="profile-stats">
-                                <span class="stat-badge">Problem Solving Badge</span>
-                                <span class="stat-badge">Java Certified</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-item">
-                        <div class="profile-icon">
-                            <img src="assets/icons/gfg-gg-logo.svg" alt="geeksforgeeks-icon" loading="lazy">
-                        </div>
-                        <div class="profile-info">
-                            <div class="profile-header">
-                                <h3 class="profile-title">GeeksforGeeks</h3>
-                                <a href="https://auth.geeksforgeeks.org/user/dinesh22r01a6745" class="profile-link" target="_blank">
-                                    View Profile
-                                </a>
-                            </div>
-                            <p class="profile-description">DSA practice and interview preparation</p>
-                            <div class="profile-stats">
-                                <span class="stat-badge">80+ Problems</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </article>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together on your next project</p>
+                    <!-- Project 2: Exspend - An Expense Tracker -->
+                    <article class="project-card">
+                        <div class="project-browser-frame">
+                            <div class="browser-header">
+                                <span class="browser-dot red"></span>
+                                <span class="browser-dot yellow"></span>
+                                <span class="browser-dot green"></span>
+                                <span class="browser-url">exspend-seven.vercel.app</span>
+                            </div>
+                            <div class="project-img-wrapper">
+                                <img src="assets/images/projects/exspend.png" alt="Exspend Expense Tracker Preview" class="project-image" loading="lazy">
+                                <div class="project-hover-overlay">
+                                    <a href="https://exspend-seven.vercel.app" target="_blank" rel="noopener noreferrer" class="overlay-btn" aria-label="Open Exspend live demo">
+                                        <span>View Live Demo</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-category">Fintech &amp; Budgeting</div>
+                            <h3 class="project-title">Exspend — Expense Tracker</h3>
+                            <p class="project-summary">
+                                Full-stack financial platform with 9 REST endpoints, bcrypt password hashing, and 24-hr JWT sessions. Delivers complete expense CRUD, budget tracking vs a $1,000 default goal across 6 categories with percentage breakdowns, 4 list filters, and 4 sort modes.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-pill">React.js</span>
+                                <span class="tech-pill">Tailwind CSS</span>
+                                <span class="tech-pill">FastAPI</span>
+                                <span class="tech-pill">PostgreSQL</span>
+                                <span class="tech-pill">OAuth2 / JWT</span>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="https://exspend-seven.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-primary">
+                                    <span>Live Demo</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </a>
+                                <a href="https://github.com/DineshPabboju/Exspend" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-secondary" aria-label="Exspend GitHub Repository">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: E-Commerce App -->
+                    <article class="project-card">
+                        <div class="project-browser-frame">
+                            <div class="browser-header">
+                                <span class="browser-dot red"></span>
+                                <span class="browser-dot yellow"></span>
+                                <span class="browser-dot green"></span>
+                                <span class="browser-url">e-comm-app-45.netlify.app</span>
+                            </div>
+                            <div class="project-img-wrapper">
+                                <img src="assets/images/projects/ecommerce.png" alt="E-Commerce Web Application Preview" class="project-image" loading="lazy">
+                                <div class="project-hover-overlay">
+                                    <a href="https://e-comm-app-45.netlify.app/" target="_blank" rel="noopener noreferrer" class="overlay-btn" aria-label="Open E-Commerce App live demo">
+                                        <span>View Live Demo</span>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-category">E-Commerce &amp; Retail</div>
+                            <h3 class="project-title">E-Commerce App (Pegasus)</h3>
+                            <p class="project-summary">
+                                Responsive modern e-commerce storefront built using React and Tailwind CSS. Features Clerk authentication for secure user sign-up, login, and session management, dynamic product browsing with multi-attribute filtering, and persistent cart management using REST APIs.
+                            </p>
+                            <div class="project-tech-stack">
+                                <span class="tech-pill">React.js</span>
+                                <span class="tech-pill">Tailwind CSS</span>
+                                <span class="tech-pill">Clerk Auth</span>
+                                <span class="tech-pill">REST APIs</span>
+                                <span class="tech-pill">Vite</span>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="https://e-comm-app-45.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-primary">
+                                    <span>Live Demo</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                                </a>
+                                <a href="https://github.com/DineshPabboju/E-Commerce-App" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-secondary" aria-label="E-Commerce App GitHub Repository">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>
-                        I'm always interested in hearing about new opportunities and projects.
-                        Whether you're a company looking to hire, or just want to say hello,
-                        I'd love to hear from you.
-                    </p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <span class="contact-icon">📧</span>
-                            <span>dinesh040805@gmail.com</span>
+        </section>
+
+        <!-- Coding Profiles Section -->
+        <section id="profiles" class="profiles">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>05 // PROBLEM SOLVING</span>
+                    </div>
+                    <h2 class="section-title">Coding Profiles</h2>
+                    <p class="section-subtitle">Consistent practice in data structures, algorithms, and competitive programming.</p>
+                </div>
+
+                <div class="profiles-grid">
+                    <a href="https://leetcode.com/u/22r01a6745" target="_blank" rel="noopener noreferrer" class="profile-card-item">
+                        <div class="profile-card-header">
+                            <div class="profile-logo-box leetcode-bg">
+                                <img src="assets/icons/icons8-leetcode-24.png" alt="LeetCode" loading="lazy">
+                            </div>
+                            <span class="profile-external-arrow">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </span>
                         </div>
-                        <div class="contact-method">
-                            <span class="contact-icon">📱</span>
-                            <span>+91 9000269928</span>
+                        <h3 class="profile-name">LeetCode</h3>
+                        <p class="profile-desc">Algorithmic problem solving across Arrays, Strings, Trees, and Dynamic Programming.</p>
+                        <div class="profile-badges">
+                            <span class="stat-pill highlight-pill">200+ Solved</span>
+                            <span class="stat-pill">Java</span>
                         </div>
-                        <div class="contact-method">
-                            <span class="contact-icon">📍</span>
-                            <span>Hyderabad, Telangana</span>
+                    </a>
+
+                    <a href="https://codechef.com/users/ds_22r01a6745" target="_blank" rel="noopener noreferrer" class="profile-card-item">
+                        <div class="profile-card-header">
+                            <div class="profile-logo-box codechef-bg">
+                                <img src="assets/icons/icons8-codechef-50.png" alt="CodeChef" loading="lazy">
+                            </div>
+                            <span class="profile-external-arrow">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </span>
                         </div>
+                        <h3 class="profile-name">CodeChef</h3>
+                        <p class="profile-desc">Active participant in competitive programming contests, division challenges, and time-constrained rounds.</p>
+                        <div class="profile-badges">
+                            <span class="stat-pill highlight-pill">1200+ Rating</span>
+                            <span class="stat-pill">50+ Contests</span>
+                        </div>
+                    </a>
+
+                    <a href="https://hackerrank.com/ds22r01a6745" target="_blank" rel="noopener noreferrer" class="profile-card-item">
+                        <div class="profile-card-header">
+                            <div class="profile-logo-box hackerrank-bg">
+                                <img src="assets/icons/icons8-hackerrank-24.png" alt="HackerRank" loading="lazy">
+                            </div>
+                            <span class="profile-external-arrow">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </span>
+                        </div>
+                        <h3 class="profile-name">HackerRank</h3>
+                        <p class="profile-desc">Skill assessment track focusing on core Java fundamentals, object-oriented design, and problem solving.</p>
+                        <div class="profile-badges">
+                            <span class="stat-pill highlight-pill">Java Certified</span>
+                            <span class="stat-pill">Gold Badges</span>
+                        </div>
+                    </a>
+
+                    <a href="https://auth.geeksforgeeks.org/user/dinesh22r01a6745" target="_blank" rel="noopener noreferrer" class="profile-card-item">
+                        <div class="profile-card-header">
+                            <div class="profile-logo-box gfg-bg">
+                                <img src="assets/icons/gfg-gg-logo.svg" alt="GeeksforGeeks" loading="lazy">
+                            </div>
+                            <span class="profile-external-arrow">
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                            </span>
+                        </div>
+                        <h3 class="profile-name">GeeksforGeeks</h3>
+                        <p class="profile-desc">DSA practice, technical interview preparation, and systematic implementation of core data structures.</p>
+                        <div class="profile-badges">
+                            <span class="stat-pill highlight-pill">80+ Solved</span>
+                            <span class="stat-pill">Practice Track</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-pill">
+                        <span class="pill-dot"></span>
+                        <span>06 // CONNECT</span>
+                    </div>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Interested in collaborating or discussing an opportunity? Let's talk.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-intro">
+                        <h3 class="contact-prompt">Let's build something remarkable together.</h3>
+                        <p class="contact-note">
+                            Whether you're looking for a full stack developer, have an engineering opportunity or freelance project in mind, or just want to connect, feel free to reach out. I'll get back to you promptly.
+                        </p>
+
+                        <div class="contact-cards-list">
+                            <div class="contact-card-item copyable" id="copy-email" role="button" tabindex="0" title="Click to copy email">
+                                <div class="contact-card-icon">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="contact-card-text">
+                                    <span class="card-label">Email Address</span>
+                                    <span class="card-value" id="email-text">dinesh040805@gmail.com</span>
+                                </div>
+                                <span class="copy-hint" title="Copy to clipboard"><i class="fa-regular fa-copy"></i></span>
+                            </div>
+
+                            <div class="contact-card-item copyable" id="copy-phone" role="button" tabindex="0" title="Click to copy phone">
+                                <div class="contact-card-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="contact-card-text">
+                                    <span class="card-label">Phone</span>
+                                    <span class="card-value" id="phone-text">+91 9000269928</span>
+                                </div>
+                                <span class="copy-hint" title="Copy to clipboard"><i class="fa-regular fa-copy"></i></span>
+                            </div>
+
+                            <div class="contact-card-item">
+                                <div class="contact-card-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="contact-card-text">
+                                    <span class="card-label">Location</span>
+                                    <span class="card-value">Hyderabad, Telangana, India</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-social-row">
+                            <a href="https://github.com/DineshPabboju" target="_blank" rel="noopener noreferrer" class="social-bubble" aria-label="Dinesh Pabboju on GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/dinesh-pabboju" target="_blank" rel="noopener noreferrer" class="social-bubble" aria-label="Dinesh Pabboju on LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:dinesh040805@gmail.com" class="social-bubble" aria-label="Send direct email">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Alex Morgan" required autocomplete="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="alex@company.com" required autocomplete="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Full Stack Project / Collaboration" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Hi Dinesh, I'd like to discuss..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span>Send Message</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Dinesh Pabboju</h3>
-                    <p>Frontend Developer</p>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/DineshPabboju" target="_blank" aria-label="GitHub">
-                        <span><i class="fa-brands fa-github"></i></span>
-                    </a>
-                    <a href="https://linkedin.com/in/dinesh-pabboju" target="_blank" aria-label="LinkedIn">
-                        <span><i class="fa-brands fa-linkedin"></i></span>
-                    </a>
-                    <a href="mailto:dinesh040805@email.com" aria-label="Email">
-                        <span><i class="fa-solid fa-envelope"></i></span>
-                    </a>
-                </div>
+        <div class="container footer-container">
+            <div class="footer-left">
+                <a href="#home" class="footer-brand">
+                    <span class="logo-mark">DP</span>
+                    <span>Dinesh Pabboju</span>
+                </a>
+                <p class="footer-tagline">Building thoughtful, scalable, and modern full-stack web experiences.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Dinesh Pabboju. All rights reserved.</p>
+            
+            <div class="footer-right">
+                <div class="footer-socials">
+                    <a href="https://github.com/DineshPabboju" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/dinesh-pabboju" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:dinesh040805@gmail.com" aria-label="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="footer-copyright">&copy; 2025 Dinesh Pabboju. Designed with minimalism and precision.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-
 </body>
 
 </html>
