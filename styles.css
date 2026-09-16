@@ -278,20 +278,55 @@ img.logo-mark {
     font-size: var(--font-size-sm);
     font-weight: 500;
     padding: 8px 14px;
-    border-radius: var(--radius-full);
-    transition: color var(--transition-fast), background-color var(--transition-fast);
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast);
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2.5px;
+    background-color: var(--accent);
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition-normal), opacity var(--transition-fast);
 }
 
 .nav-link:hover {
     color: var(--text-primary);
-    background-color: var(--bg-secondary);
 }
 
 .nav-link.active {
     color: var(--accent);
-    background-color: var(--accent-subtle);
+    background-color: transparent;
     font-weight: 600;
+}
+
+.nav-link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.nav-link.active:hover {
+    color: var(--accent);
+    background-color: transparent;
+}
+
+[data-theme="dark"] .nav-link.active {
+    color: var(--accent-light);
+}
+
+[data-theme="dark"] .nav-link::after {
+    background-color: var(--accent-light);
 }
 
 .nav-actions {
@@ -1742,14 +1777,28 @@ img.logo-mark {
     .nav-menu {
         flex-direction: column;
         width: 100%;
-        gap: 8px;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .nav-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .nav-link {
-        width: 100%;
+        width: fit-content;
+        display: inline-block;
         text-align: center;
-        padding: 10px 0;
-        display: block;
+        padding: 10px 16px;
+        background-color: transparent;
+    }
+
+    .nav-link::after {
+        left: 16px;
+        right: 16px;
+        bottom: 3px;
     }
 
     .form-row {
