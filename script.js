@@ -280,7 +280,7 @@ class ClipboardHelper {
 // 3. Create an Email Template to get your TEMPLATE_ID
 // 4. Go to Account > Security to copy your PUBLIC_KEY
 const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_l4feu8g',     // e.g., 'service_abc123'
+    SERVICE_ID: 'service_pki9vqf',     // e.g., 'service_abc123'
     TEMPLATE_ID: 'template_bcbbuy5',   // e.g., 'template_xyz456'
     PUBLIC_KEY: 'Bi3X3vlcnQimA_pNk'      // e.g., 'user_123456789'
 };
