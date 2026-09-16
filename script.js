@@ -280,7 +280,7 @@ class ClipboardHelper {
 // 3. Create an Email Template to get your TEMPLATE_ID
 // 4. Go to Account > Security to copy your PUBLIC_KEY
 const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_pki9vqf',     // e.g., 'service_abc123'
+    SERVICE_ID: 'service_pki9vqfwq',     // e.g., 'service_abc123'
     TEMPLATE_ID: 'template_bcbbuy5',   // e.g., 'template_xyz456'
     PUBLIC_KEY: 'Bi3X3vlcnQimA_pNk'      // e.g., 'user_123456789'
 };
@@ -342,13 +342,10 @@ class ContactForm {
                     EMAILJS_CONFIG.TEMPLATE_ID,
                     {
                         name: name,
-                        from_name: name,
                         email: email,
-                        from_email: email,
-                        reply_to: email,
                         subject: subject || 'Portfolio Contact Inquiry',
                         message: message,
-                        to_email: 'dinesh040805@gmail.com'
+                        reply_to: email
                     },
                     {
                         publicKey: EMAILJS_CONFIG.PUBLIC_KEY
